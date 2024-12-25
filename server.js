@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const port = 5000;
+
+// Use the port from environment variables or default to 5000
+const port = process.env.PORT || 5000;
 
 // Enable CORS
 app.use(cors());
@@ -23,9 +25,8 @@ const candidates = [
 // Middleware to prettify JSON responses
 app.set('json spaces', 2);
 
-// Default route for the root URL
+// Route for serving HTML content
 app.get('/', (req, res) => {
-  // Generate an HTML table with candidate data
   const tableRows = candidates
     .map(
       (candidate) => `
@@ -84,10 +85,10 @@ app.get('/', (req, res) => {
 
 // Endpoint to get candidates data in JSON format
 app.get('/api/candidates', (req, res) => {
-  res.json(candidates); // JSON response is now prettified
+  res.json(candidates);
 });
 
-// Start server
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
