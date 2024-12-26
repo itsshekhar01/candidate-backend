@@ -87,3 +87,10 @@ app.get('/api/candidates', (req, res) => {
 
 // No need to listen on a specific port for Vercel
 module.exports = app;
+
+// Start the server locally on port 5000
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
