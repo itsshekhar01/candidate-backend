@@ -2,9 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// Use the port from environment variables or default to 5000
-const port = process.env.PORT || 5000;
-
 // Enable CORS
 app.use(cors());
 
@@ -88,7 +85,5 @@ app.get('/api/candidates', (req, res) => {
   res.json(candidates);
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+// No need to listen on a specific port for Vercel
+module.exports = app;
